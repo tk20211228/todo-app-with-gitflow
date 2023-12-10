@@ -11,6 +11,10 @@ function App() {
     setTask("");
   };
 
+  const handleDeleteClick = (index: number) => { // 追加
+    setTodos(todos.filter((_, i) => i !== index));
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-gray-800">
       <h1 className="text-2xl font-bold mb-4">TODOリスト</h1>
@@ -31,7 +35,12 @@ function App() {
       </div>
       <ul className="space-y-2">
         {todos.map((todo, index) => (
-          <Todo key={index} task={todo.task} complete={todo.complete} />
+          <Todo
+            key={index}
+            task={todo.task}
+            complete={todo.complete}
+            onDelete={() => handleDeleteClick(index)} 
+          />
         ))}
       </ul>
     </div>
